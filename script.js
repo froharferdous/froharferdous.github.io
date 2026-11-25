@@ -22,7 +22,7 @@ const config = {
 
     linkedin: 'https://www.linkedin.com/in/frohar-ferdous/',
 
-    github: 'https://github.com/Frohar256',
+    github: 'https://github.com/froharferdous',
 
     resume: '/assets/frohar.ferdous-resume.pdf'
 
