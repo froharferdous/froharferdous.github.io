@@ -1,0 +1,1176 @@
+
+/* ==========================================================
+   01. DESIGN VARIABLES
+
+   Change these values to customise the overall appearance.
+   ========================================================== */
+
+:root {
+    /* Colours */
+
+    --paper: #f6f5f0;
+    --white: #fff;
+    --ink: #182c3d;
+    --muted: #4d606e;
+    --blue: #235e85;
+    --line: #cbd5d9;
+    --wash: #e8eef0;
+
+    /* Typography */
+
+    --font: Arial, Helvetica, sans-serif;
+    --mono: ui-monospace, Consolas, monospace;
+
+    /* Layout */
+
+    --space: clamp(3rem, 7vw, 6rem);
+    --width: 1180px;
+}
+
+
+/* ==========================================================
+   02. BASE STYLES
+   ========================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+}
+
+body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 1rem/1.65 var(--font);
+}
+
+[hidden] {
+    display: none !important;
+}
+
+a {
+    color: var(--blue);
+    text-underline-offset: 4px;
+}
+
+a:hover {
+    text-decoration-thickness: 2px;
+}
+
+button {
+    font: inherit;
+    cursor: pointer;
+}
+
+button,
+a,
+summary {
+    touch-action: manipulation;
+}
+
+h1,
+h2,
+h3,
+p,
+figure {
+    margin: 0;
+}
+
+h1,
+h2,
+h3 {
+    line-height: 1.15;
+    letter-spacing: -.035em;
+}
+
+h1 {
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 750;
+}
+
+h2 {
+    font-size: clamp(2rem, 4vw, 3.3rem);
+}
+
+h3 {
+    font-size: 1.45rem;
+}
+
+p + p {
+    margin-top: 1rem;
+}
+
+ul {
+    padding-left: 1.2rem;
+}
+
+img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+section {
+    padding-block: var(--space);
+    border-bottom: 1px solid var(--line);
+}
+
+
+/* ==========================================================
+   03. GENERAL LAYOUT AND UTILITY CLASSES
+   ========================================================== */
+
+.wrap {
+    width: min(var(--width), calc(100% - 3rem));
+    margin-inline: auto;
+}
+
+.eyebrow,
+.category,
+.index {
+    font: 600 .75rem/1.5 var(--mono);
+    letter-spacing: .09em;
+    text-transform: uppercase;
+    color: var(--blue);
+}
+
+.eyebrow {
+    margin-bottom: 1rem;
+}
+
+.muted {
+    color: var(--muted);
+}
+
+
+/* ==========================================================
+   04. ACCESSIBILITY
+   ========================================================== */
+
+:focus-visible {
+    outline: 3px solid #176da4;
+    outline-offset: 5px;
+}
+
+.skip {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 10;
+
+    background: white;
+    padding: 1rem;
+
+    transform: translateY(-200%);
+}
+
+.skip:focus {
+    transform: none;
+}
+
+
+/* ==========================================================
+   05. NAVIGATION BAR
+   ========================================================== */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+}
+
+.nav {
+    min-height: 72px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    gap: 1rem;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+
+    gap: .8rem;
+
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--ink);
+}
+
+
+/* Initials logo */
+
+.mark {
+    display: grid;
+    place-items: center;
+
+    width: 40px;
+    height: 40px;
+
+    background: var(--ink);
+    color: white;
+
+    font: 700 .85rem var(--mono);
+}
+
+
+/* Navigation links */
+
+nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 1.5rem;
+}
+
+nav a {
+    color: var(--ink);
+    font-size: .9rem;
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: var(--blue);
+    text-decoration: underline;
+}
+
+
+/* Mobile navigation button */
+
+.menu {
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--ink);
+
+    padding: .45rem .85rem;
+}
+
+
+/* ==========================================================
+   06. HERO SECTION
+   ========================================================== */
+
+.hero {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    align-items: center;
+
+    gap: clamp(2rem, 6vw, 5rem);
+}
+
+.hero h1 {
+    margin-bottom: 1rem;
+}
+
+.role {
+    font-size: clamp(1.15rem, 2.3vw, 1.65rem);
+    font-weight: 600;
+
+    color: var(--blue);
+    margin-bottom: 1.5rem;
+}
+
+.intro {
+    max-width: 62ch;
+    font-size: 1.1rem;
+    color: var(--muted);
+}
+
+
+/* ==========================================================
+   07. BUTTONS
+   ========================================================== */
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: .7rem;
+    margin-top: 1.8rem;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 46px;
+    padding: .65rem 1.15rem;
+
+    border: 1px solid var(--blue);
+
+    text-decoration: none;
+    font-weight: 700;
+
+    transition:
+        background .18s,
+        color .18s;
+}
+
+
+/* Primary button */
+
+.primary {
+    background: var(--blue);
+    color: white;
+}
+
+.primary:hover {
+    background: var(--ink);
+    border-color: var(--ink);
+}
+
+
+/* Secondary button */
+
+.secondary:hover {
+    background: var(--wash);
+}
+
+
+/* Inactive links */
+
+a[aria-disabled="true"] {
+    color: var(--muted);
+    cursor: default;
+    text-decoration: none;
+}
+
+.secondary[aria-disabled="true"] {
+    border-color: var(--line);
+}
+
+
+/* ==========================================================
+   08. SOCIAL MEDIA LINKS
+   ========================================================== */
+
+.social {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 1rem;
+    margin-top: 1.2rem;
+
+    font-size: .9rem;
+}
+
+
+/* ==========================================================
+   09. IMAGE PLACEHOLDERS
+   ========================================================== */
+
+.visual {
+    position: relative;
+
+    display: grid;
+    place-items: center;
+
+    min-height: 200px;
+    aspect-ratio: 16 / 9;
+
+    background-color: var(--wash);
+
+    background-image:
+        linear-gradient(
+            #cad8de 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            #cad8de 1px,
+            transparent 1px
+        );
+
+    background-size: 28px 28px;
+
+    border-bottom: 1px solid var(--line);
+
+    padding: 2rem;
+    text-align: center;
+}
+
+
+/* Placeholder label */
+
+.visual span {
+    background: var(--paper);
+    border: 1px dashed var(--blue);
+
+    padding: .9rem 1rem;
+
+    font: 500 .78rem/1.5 var(--mono);
+    max-width: 28ch;
+}
+
+
+/* Technical grid corner markers */
+
+.visual::before,
+.visual::after {
+    content: "+";
+
+    position: absolute;
+
+    color: var(--blue);
+    font-family: var(--mono);
+}
+
+.visual::before {
+    left: 12px;
+    top: 8px;
+}
+
+.visual::after {
+    right: 12px;
+    bottom: 8px;
+}
+
+
+/* ==========================================================
+   10. PORTRAIT AND PROJECT IMAGES
+   ========================================================== */
+
+.portrait .visual {
+    aspect-ratio: 4 / 5;
+    border: 1px solid var(--line);
+    min-height: 0;
+}
+
+.portrait figcaption {
+    font: .75rem/1.5 var(--mono);
+
+    color: var(--muted);
+    padding-top: .7rem;
+}
+
+.portrait img,
+.project img {
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+    background: var(--wash);
+}
+
+.portrait img {
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+}
+
+
+/* ==========================================================
+   11. SECTION HEADINGS
+   ========================================================== */
+
+.section-head {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    align-items: end;
+
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.section-head p {
+    color: var(--muted);
+    max-width: 55ch;
+}
+
+
+/* ==========================================================
+   12. PROJECT CATEGORY FILTERS
+   ========================================================== */
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: .5rem;
+    margin-bottom: 1.25rem;
+}
+
+.filters button {
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--ink);
+
+    padding: .45rem .85rem;
+    min-height: 44px;
+
+    font-size: .88rem;
+}
+
+.filters button:hover {
+    border-color: var(--blue);
+}
+
+
+/* Selected filter */
+
+.filters button[aria-pressed="true"] {
+    background: var(--ink);
+    color: white;
+    border-color: var(--ink);
+}
+
+#filter-status {
+    font-size: .85rem;
+    color: var(--muted);
+    margin-bottom: 1rem;
+}
+
+
+/* ==========================================================
+   13. PROJECT CARDS
+   ========================================================== */
+
+.projects {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.project {
+    background: var(--white);
+    border: 1px solid var(--line);
+}
+
+.project-body {
+    padding: clamp(1.2rem, 3vw, 2rem);
+}
+
+.project h3 {
+    margin: .55rem 0 .8rem;
+}
+
+.project .overview {
+    color: var(--muted);
+}
+
+.project figcaption {
+    padding: .45rem 1rem;
+
+    border-bottom: 1px solid var(--line);
+
+    font: .73rem/1.5 var(--mono);
+    color: var(--muted);
+}
+
+
+/* Project achievement or result */
+
+.result {
+    margin-top: 1rem;
+    padding: .8rem 0;
+
+    border-block: 1px solid var(--line);
+
+    font-size: .92rem;
+    font-weight: 700;
+    color: var(--ink);
+}
+
+
+/* Project technical tags */
+
+.tags {
+    list-style: none;
+    padding: 0;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: .4rem;
+    margin: 1rem 0;
+}
+
+.tags li {
+    font-size: .75rem;
+    background: var(--wash);
+    padding: .25rem .55rem;
+}
+
+
+/* ==========================================================
+   14. EXPANDABLE CASE STUDIES
+   ========================================================== */
+
+details {
+    margin-top: 1rem;
+}
+
+summary {
+    cursor: pointer;
+
+    color: var(--blue);
+    font-weight: 700;
+
+    min-height: 44px;
+    padding: .5rem 0;
+}
+
+details dl {
+    margin: 1rem 0 0;
+}
+
+
+/* Case study headings */
+
+dt {
+    font-weight: 700;
+    margin-top: .9rem;
+}
+
+
+/* Case study descriptions */
+
+dd {
+    margin: .2rem 0 0;
+
+    color: var(--muted);
+    font-size: .94rem;
+}
+
+.placeholder {
+    color: var(--muted);
+    font-style: italic;
+}
+
+
+/* ==========================================================
+   15. KEY ACHIEVEMENTS
+   ========================================================== */
+
+.metrics {
+    background: var(--ink);
+    color: white;
+}
+
+.metrics .eyebrow,
+.metrics .muted {
+    color: #c0d7e5;
+}
+
+.metric-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    margin-top: 2rem;
+    gap: 1.5rem;
+}
+
+.metric {
+    border-top: 1px solid #6e8494;
+    padding-top: 1rem;
+}
+
+.metric strong {
+    display: block;
+
+    font-size: clamp(1.6rem, 3vw, 2.5rem);
+    line-height: 1.2;
+
+    margin-bottom: .6rem;
+}
+
+.metric p {
+    font-size: .9rem;
+    color: #dce7ed;
+}
+
+
+/* ==========================================================
+   16. TECHNICAL SKILLS
+   ========================================================== */
+
+.skill-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 1.5rem;
+}
+
+.skill {
+    padding: 1.6rem;
+
+    background: white;
+    border-top: 3px solid var(--blue);
+}
+
+.skill ul {
+    columns: 2;
+    column-gap: 1.8rem;
+
+    margin-bottom: 0;
+    color: var(--muted);
+}
+
+.skill li {
+    break-inside: avoid;
+
+    margin-bottom: .3rem;
+    font-size: .92rem;
+}
+
+
+/* ==========================================================
+   17. PROFESSIONAL EXPERIENCE TIMELINE
+   ========================================================== */
+
+.timeline {
+    border-left: 1px solid var(--line);
+
+    margin: 1.8rem 0 0;
+    padding-left: 1.7rem;
+}
+
+.entry {
+    position: relative;
+
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+
+    gap: 1rem;
+    padding: 0 0 2rem;
+}
+
+
+/* Timeline markers */
+
+.entry::before {
+    content: "";
+
+    position: absolute;
+    left: -2rem;
+    top: .5rem;
+
+    width: 9px;
+    height: 9px;
+
+    background: var(--blue);
+    border: 2px solid var(--paper);
+}
+
+.entry h3 {
+    margin: .25rem 0 .45rem;
+}
+
+.entry:last-child {
+    padding-bottom: 0;
+}
+
+
+/* ==========================================================
+   18. EDUCATION AND ABOUT
+   ========================================================== */
+
+.split {
+    display: grid;
+    grid-template-columns: 1fr 1.35fr;
+
+    gap: 2rem;
+}
+
+.education {
+    border-left: 3px solid var(--blue);
+    padding-left: 1.5rem;
+}
+
+
+/* ==========================================================
+   19. CONTACT SECTION
+   ========================================================== */
+
+.contact-links {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.contact-links a {
+    display: block;
+
+    border-top: 1px solid var(--line);
+    padding: .85rem 0;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* ==========================================================
+   20. FOOTER
+   ========================================================== */
+
+footer {
+    padding: 1.5rem 0;
+
+    font-size: .85rem;
+    color: var(--muted);
+}
+
+.foot {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    gap: 1rem;
+}
+
+
+/* ==========================================================
+   21. TABLET RESPONSIVE LAYOUT
+
+   Applies to screen widths of 850px or less.
+   ========================================================== */
+
+@media (max-width: 850px) {
+
+    .hero,
+    .section-head,
+    .split {
+        grid-template-columns: 1fr;
+    }
+
+    .portrait {
+        max-width: 340px;
+    }
+
+    .metric-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .skill ul {
+        columns: 1;
+    }
+
+    .nav {
+        padding-block: .75rem;
+    }
+
+    nav {
+        gap: 1rem;
+    }
+
+}
+
+
+/* ==========================================================
+   22. MOBILE RESPONSIVE LAYOUT
+
+   Applies to screen widths of 640px or less.
+   ========================================================== */
+
+@media (max-width: 640px) {
+
+    .wrap {
+        width: calc(100% - 2rem);
+    }
+
+    .projects,
+    .skill-grid,
+    .entry,
+    .contact-links {
+        grid-template-columns: 1fr;
+    }
+
+    .nav nav {
+        width: 100%;
+
+        flex-direction: column;
+        align-items: stretch;
+
+        gap: 0;
+    }
+
+    .nav nav a {
+        padding: .65rem 0;
+        border-top: 1px solid var(--line);
+    }
+
+    .visual {
+        min-height: 165px;
+    }
+
+    .hero {
+        gap: 2rem;
+    }
+
+    .metric-grid {
+        gap: 1rem;
+    }
+
+    .skill ul {
+        columns: 2;
+    }
+
+    .entry {
+        gap: .25rem;
+    }
+
+    html {
+        scroll-padding-top: 5rem;
+    }
+
+}
+
+
+/* ==========================================================
+   23. REDUCED MOTION ACCESSIBILITY
+
+   Respects the user's operating system preferences.
+   ========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
+        animation: none !important;
+    }
+
+}
+
+
+/* ==========================================================
+   CONTACT FORM
+   ========================================================== */
+
+.contact-intro {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+
+    color: var(--muted);
+    max-width: 45ch;
+}
+
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+
+    gap: 1.25rem;
+}
+
+
+/* Form groups */
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+
+    gap: .5rem;
+}
+
+
+/* Form labels */
+
+.form-group label {
+    font-size: .9rem;
+    font-weight: 600;
+
+    color: var(--ink);
+}
+
+
+/* Input fields */
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+
+    padding: .85rem 1rem;
+
+    background: var(--white);
+    color: var(--ink);
+
+    border: 1px solid var(--line);
+    border-radius: 0;
+
+    font-family: var(--font);
+    font-size: 1rem;
+
+    transition:
+        border-color .2s,
+        background-color .2s;
+}
+
+
+/* Input placeholders */
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--muted);
+    opacity: .8;
+}
+
+
+/* Hover state */
+
+.form-group input:hover,
+.form-group select:hover,
+.form-group textarea:hover {
+    border-color: var(--muted);
+}
+
+
+/* Focus state */
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--blue);
+
+    outline: 2px solid var(--blue);
+    outline-offset: 2px;
+}
+
+
+/* Message field */
+
+.form-group textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+
+/* Subject dropdown */
+
+.form-group select {
+    cursor: pointer;
+}
+
+
+/* Submit button */
+
+.contact-form button {
+    align-self: flex-start;
+
+    min-width: 160px;
+
+    cursor: pointer;
+}
+
+
+/* Disabled submit button */
+
+.contact-form button:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+}
+
+
+/* Form submission status */
+
+.form-status {
+    font-size: .9rem;
+    font-weight: 600;
+}
+
+.form-status:empty {
+    margin: 0;
+    padding: 0;
+    height: 0;
+}
+
+.form-status.success {
+    color: #286749;
+}
+
+.form-status.error {
+    color: #b42318;
+}
+
+
+/* Privacy information */
+
+.form-privacy {
+    font-size: .8rem;
+    line-height: 1.5;
+
+    color: var(--muted);
+}
+
+
+/* External contact links */
+
+.contact-links {
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+}
+
+
+/* ==========================================================
+   MOBILE CONTACT FORM
+   ========================================================== */
+
+@media (max-width: 640px) {
+
+    .contact-form button {
+        width: 100%;
+    }
+
+    .contact-links {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* ==========================================================
+   CONTACT BUTTON
+   ========================================================== */
+
+.contact-btn {
+    background: #235e85;
+    border-color: #235e85;
+    color: #ffffff;
+
+    min-width: 160px;
+    min-height: 46px;
+
+    padding: .65rem 1.5rem;
+
+    font-weight: 700;
+    text-align: center;
+}
+
+.contact-btn:hover {
+    background: #182c3d;
+    border-color: #182c3d;
+    color: #ffffff;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+}
