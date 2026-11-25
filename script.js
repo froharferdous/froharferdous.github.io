@@ -24,7 +24,7 @@ const config = {
 
     github: 'https://github.com/froharferdous',
 
-    resume: '/assets/frohar.ferdous-resume.pdf'
+    resume: '/assets/frohar-ferdous-resume.pdf'
 
 };
 
