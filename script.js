@@ -378,3 +378,247 @@ filter('all');
 
 document.getElementById('year').textContent =
     new Date().getFullYear();
+
+
+/* ==========================================================
+   WEBSITE APPEARANCE
+
+   - Automatic system theme detection
+   - Manual light and dark mode selection
+   - Persistent visitor preferences
+   - Live system theme synchronisation
+   ========================================================== */
+
+(() => {
+
+    const root = document.documentElement;
+
+    const themeSelect =
+        document.getElementById('theme-select');
+
+    const systemTheme = window.matchMedia(
+        '(prefers-color-scheme: dark)'
+    );
+
+    const storageKey = 'portfolio-theme';
+
+    const validThemes = [
+        'system',
+        'light',
+        'dark'
+    ];
+
+
+    /* ======================================================
+       RETRIEVE SAVED PREFERENCE
+       ====================================================== */
+
+    function getSavedTheme() {
+
+        try {
+
+            const savedTheme =
+                localStorage.getItem(storageKey);
+
+            return validThemes.includes(savedTheme)
+                ? savedTheme
+                : 'system';
+
+        } catch {
+
+            return 'system';
+
+        }
+
+    }
+
+
+    /* ======================================================
+       SAVE THEME PREFERENCE
+       ====================================================== */
+
+    function saveTheme(preference) {
+
+        try {
+
+            localStorage.setItem(
+                storageKey,
+                preference
+            );
+
+        } catch {
+
+            // Theme selection remains functional
+            // if local storage is unavailable.
+
+        }
+
+    }
+
+
+    /* ======================================================
+       DETERMINE CURRENT THEME
+       ====================================================== */
+
+    let themePreference = getSavedTheme();
+
+
+    function resolveTheme(preference) {
+
+        if (preference === 'system') {
+
+            return systemTheme.matches
+                ? 'dark'
+                : 'light';
+
+        }
+
+        return preference;
+
+    }
+
+
+    /* ======================================================
+       APPLY THE SELECTED THEME
+       ====================================================== */
+
+    function applyTheme(preference) {
+
+        const theme = resolveTheme(preference);
+
+
+        /* Update the website theme */
+
+        root.setAttribute(
+            'data-theme',
+            theme
+        );
+
+
+        /* Synchronise the theme selector */
+
+        if (themeSelect) {
+
+            themeSelect.value = preference;
+
+        }
+
+
+        /* Update mobile browser theme colour */
+
+        const themeMeta = document.querySelector(
+            'meta[name="theme-color"]'
+        );
+
+        if (themeMeta) {
+
+            const background = getComputedStyle(root)
+                .getPropertyValue('--paper')
+                .trim();
+
+            if (background) {
+
+                themeMeta.setAttribute(
+                    'content',
+                    background
+                );
+
+            }
+
+        }
+
+    }
+
+
+    /* ======================================================
+       INITIALISE WEBSITE APPEARANCE
+       ====================================================== */
+
+    applyTheme(themePreference);
+
+
+    /* ======================================================
+       HANDLE MANUAL THEME SELECTION
+       ====================================================== */
+
+    if (themeSelect) {
+
+        themeSelect.addEventListener(
+            'change',
+            () => {
+
+                const selectedTheme =
+                    themeSelect.value;
+
+                if (!validThemes.includes(selectedTheme)) {
+
+                    return;
+
+                }
+
+                themePreference = selectedTheme;
+
+                applyTheme(themePreference);
+
+                saveTheme(themePreference);
+
+            }
+        );
+
+    }
+
+
+    /* ======================================================
+       FOLLOW SYSTEM THEME CHANGES
+       ====================================================== */
+
+    function handleSystemThemeChange() {
+
+        if (themePreference === 'system') {
+
+            applyTheme('system');
+
+        }
+
+    }
+
+
+    if (typeof systemTheme.addEventListener === 'function') {
+
+        systemTheme.addEventListener(
+            'change',
+            handleSystemThemeChange
+        );
+
+    } else if (typeof systemTheme.addListener === 'function') {
+
+        systemTheme.addListener(
+            handleSystemThemeChange
+        );
+
+    }
+
+
+    /* ======================================================
+       SYNCHRONISE APPEARANCE BETWEEN BROWSER TABS
+       ====================================================== */
+
+    window.addEventListener(
+        'storage',
+        event => {
+
+            if (
+                event.key === storageKey ||
+                event.key === null
+            ) {
+
+                themePreference = getSavedTheme();
+
+                applyTheme(themePreference);
+
+            }
+
+        }
+    );
+
+})();

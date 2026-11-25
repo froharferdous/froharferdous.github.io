@@ -1259,3 +1259,526 @@ html {
     }
 
 }
+
+
+/* ==========================================================
+   LIGHT MODE
+   ========================================================== */
+
+:root {
+    color-scheme: light;
+}
+
+
+/* ==========================================================
+   DARK MODE COLOUR PALETTE
+   ========================================================== */
+
+:root[data-theme="dark"] {
+
+    color-scheme: dark;
+
+
+    /* Background colours */
+
+    --paper: #101820;
+    --white: #1b2733;
+    --wash: #253442;
+
+
+    /* Text colours */
+
+    --ink: #e6edf3;
+    --muted: #aab8c5;
+
+
+    /* Accent colours */
+
+    --blue: #8bc5ed;
+    --accent-light: #b3d9f3;
+    --accent-hover: #b3d9f3;
+
+
+    /* Borders and grid lines */
+
+    --line: #344351;
+    --grid-line: #344351;
+
+
+    /* Engineering results section */
+
+    --dark-line: #344351;
+    --dark-text: #c1ceda;
+
+}
+
+
+/* ==========================================================
+   THEME SELECTOR
+   ========================================================== */
+
+.theme-control {
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: .4rem;
+
+    padding: .4rem .6rem;
+
+    background: var(--paper);
+    color: var(--ink);
+
+    border: 1px solid var(--line);
+    border-radius: 6px;
+
+    flex-shrink: 0;
+
+    transition:
+        background-color .2s ease,
+        border-color .2s ease,
+        color .2s ease;
+
+}
+
+
+.theme-control:hover {
+
+    background: var(--wash);
+    border-color: var(--blue);
+
+}
+
+
+.theme-icon {
+
+    display: block;
+
+    flex-shrink: 0;
+
+    color: var(--ink);
+
+}
+
+
+.theme-select {
+
+    background: transparent;
+    color: var(--ink);
+
+    border: none;
+
+    padding: .25rem;
+
+    font-family: var(--font);
+    font-size: .8rem;
+
+    cursor: pointer;
+
+}
+
+
+.theme-select option {
+
+    background: var(--white);
+    color: var(--ink);
+
+}
+
+
+.theme-control:focus-within {
+
+    outline: 2px solid var(--blue);
+    outline-offset: 3px;
+
+}
+
+
+.theme-select:focus-visible {
+
+    outline: none;
+
+}
+
+
+/* ==========================================================
+   DARK MODE OVERRIDES
+   ========================================================== */
+
+
+/* Main website background */
+
+[data-theme="dark"] body {
+
+    background-color: var(--paper);
+    color: var(--ink);
+
+}
+
+
+/* Navigation */
+
+[data-theme="dark"] header {
+
+    background: var(--paper);
+    border-color: var(--line);
+
+}
+
+
+[data-theme="dark"] .mark {
+
+    background: var(--ink);
+    color: var(--paper);
+
+}
+
+
+/* Primary buttons */
+
+[data-theme="dark"] .primary {
+
+    background: var(--blue);
+    border-color: var(--blue);
+
+    color: var(--paper);
+
+}
+
+
+[data-theme="dark"] .primary:hover {
+
+    background: var(--accent-hover);
+    border-color: var(--accent-hover);
+
+    color: var(--paper);
+
+}
+
+
+/* Secondary buttons */
+
+[data-theme="dark"] .secondary {
+
+    color: var(--blue);
+    border-color: var(--blue);
+
+}
+
+
+[data-theme="dark"] .secondary:hover {
+
+    background: var(--wash);
+    color: var(--blue);
+
+}
+
+
+/* Keep the contact button blue */
+
+[data-theme="dark"] .contact-btn {
+
+    background: #235e85;
+    border-color: #235e85;
+
+    color: #ffffff;
+
+}
+
+
+[data-theme="dark"] .contact-btn:hover {
+
+    background: #3478a5;
+    border-color: #3478a5;
+
+    color: #ffffff;
+
+}
+
+
+/* Circular profile photograph */
+
+[data-theme="dark"] .portrait img {
+
+    border-color: var(--line);
+
+    box-shadow:
+        0 4px 16px rgba(0, 0, 0, .3);
+
+}
+
+
+/* Project cards */
+
+[data-theme="dark"] .project {
+
+    background: var(--white);
+    border-color: var(--line);
+
+}
+
+
+/* Skills */
+
+[data-theme="dark"] .skill {
+
+    background: var(--white);
+    border-color: var(--line);
+
+}
+
+
+/* Project tags */
+
+[data-theme="dark"] .tags li {
+
+    background: var(--wash);
+    color: var(--muted);
+
+    border-color: var(--line);
+
+}
+
+
+/* Project filters */
+
+[data-theme="dark"] .filters button {
+
+    color: var(--ink);
+    border-color: var(--line);
+
+}
+
+
+[data-theme="dark"] .filters button:hover {
+
+    background: var(--wash);
+
+}
+
+
+[data-theme="dark"] .filters button[aria-pressed="true"] {
+
+    background: var(--blue);
+    border-color: var(--blue);
+
+    color: var(--paper);
+
+}
+
+
+/* Expandable project case studies */
+
+[data-theme="dark"] details {
+
+    border-color: var(--line);
+
+}
+
+
+[data-theme="dark"] summary {
+
+    color: var(--blue);
+
+}
+
+
+/* Technical image backgrounds */
+
+[data-theme="dark"] .visual {
+
+    background-color: var(--wash);
+
+    background-image:
+        linear-gradient(
+            var(--grid-line) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            var(--grid-line) 1px,
+            transparent 1px
+        );
+
+}
+
+
+/* Engineering results section */
+
+[data-theme="dark"] .metrics {
+
+    background: #0b1219;
+    color: var(--ink);
+
+}
+
+
+[data-theme="dark"] .metrics .eyebrow,
+[data-theme="dark"] .metrics .metric-label {
+
+    color: var(--accent-light);
+
+}
+
+
+[data-theme="dark"] .metric {
+
+    border-color: var(--dark-line);
+
+}
+
+
+[data-theme="dark"] .metric p {
+
+    color: var(--dark-text);
+
+}
+
+
+/* Contact form */
+
+[data-theme="dark"] .contact-form input,
+[data-theme="dark"] .contact-form select,
+[data-theme="dark"] .contact-form textarea {
+
+    background: var(--white);
+    color: var(--ink);
+
+    border-color: var(--line);
+
+}
+
+
+[data-theme="dark"] .contact-form input::placeholder,
+[data-theme="dark"] .contact-form textarea::placeholder {
+
+    color: var(--muted);
+
+}
+
+
+[data-theme="dark"] .contact-form select option {
+
+    background: var(--white);
+    color: var(--ink);
+
+}
+
+
+[data-theme="dark"] #form-status.success {
+
+    color: #81d6a4;
+
+}
+
+
+[data-theme="dark"] #form-status.error {
+
+    color: #ff9999;
+
+}
+
+
+/* Footer */
+
+[data-theme="dark"] footer {
+
+    background: var(--paper);
+    color: var(--muted);
+
+    border-color: var(--line);
+
+}
+
+
+/* Accessibility */
+
+[data-theme="dark"] .skip {
+
+    background: var(--white);
+    color: var(--ink);
+
+}
+
+
+[data-theme="dark"] :focus-visible {
+
+    outline-color: var(--blue);
+
+}
+
+
+/* ==========================================================
+   SMOOTH THEME TRANSITIONS
+   ========================================================== */
+
+body,
+header,
+footer,
+section,
+.project,
+.skill,
+.btn,
+.mark,
+.tags li,
+input,
+select,
+textarea {
+
+    transition:
+        background-color .2s ease,
+        color .2s ease,
+        border-color .2s ease;
+
+}
+
+
+/* ==========================================================
+   MOBILE RESPONSIVENESS
+   ========================================================== */
+
+@media (max-width: 640px) {
+
+    .theme-control {
+
+        padding: .25rem .4rem;
+
+        gap: .25rem;
+
+    }
+
+    .theme-select {
+
+        font-size: .75rem;
+
+    }
+
+    .theme-icon {
+
+        width: 16px;
+        height: 16px;
+
+    }
+
+}
+
+
+/* ==========================================================
+   REDUCED MOTION ACCESSIBILITY
+   ========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        transition: none !important;
+
+        scroll-behavior: auto !important;
+
+    }
+
+}

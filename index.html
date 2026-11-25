@@ -33,6 +33,45 @@
 
     <link rel="stylesheet" href="style.css">
 
+    <!-- ======================================================
+     THEME INITIALISATION
+     ====================================================== -->
+
+    <script>
+        (() => {
+
+            let preference = 'system';
+
+            try {
+
+                preference =
+                    localStorage.getItem('portfolio-theme')
+                    || 'system';
+
+            } catch {
+
+                // Fall back to system preference.
+
+            }
+
+            const systemDark = window.matchMedia(
+                '(prefers-color-scheme: dark)'
+            ).matches;
+
+            const theme =
+                preference === 'light' || preference === 'dark'
+                    ? preference
+                    : systemDark ? 'dark' : 'light';
+
+            document.documentElement.setAttribute(
+                'data-theme',
+                theme
+            );
+
+        })();
+    </script>
+
+
 </head>
 
 <body id="top">
@@ -55,19 +94,47 @@
             <button class="menu" id="menu" aria-controls="navigation" aria-expanded="false" hidden>
                 Menu
             </button>
-
+            
             <nav id="navigation" aria-label="Main navigation">
-
+                
                 <a href="#projects">Projects</a>
                 <a href="#skills">Skills</a>
                 <a href="#experience">Experience</a>
                 <a href="#education">Education</a>
                 <a href="#about">About</a>
                 <a href="#contact">Contact</a>
-
+                
+                <!-- ======================================================
+             THEME SELECTOR
+             ====================================================== -->
+        
+                <div class="theme-control">
+        
+                    <svg class="theme-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                        aria-hidden="true">
+        
+                        <circle cx="12" cy="12" r="9" />
+        
+                        <path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" stroke="none" />
+        
+                    </svg>
+        
+                    <select id="theme-select" class="theme-select" aria-label="Website appearance" title="Website appearance">
+        
+                        <option value="system">System</option>
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+        
+                    </select>
+        
+                </div>
             </nav>
 
         </div>
+
+
+
 
     </header>
 
