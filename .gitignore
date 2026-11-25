@@ -1,0 +1,18 @@
+# Editor configuration
+.vscode/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+.env.*
+
+# Private documents
+private/
+assets/Frohar-Ferdous-Resume.pdf
+
+# Temporary files
+*.tmp
+*.bak
